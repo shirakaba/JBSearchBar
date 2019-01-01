@@ -60,9 +60,9 @@ RCT_EXPORT_VIEW_PROPERTY(searchBarStyle, UISearchBarStyle)
 RCT_EXPORT_VIEW_PROPERTY(text, NSString)
 RCT_EXPORT_VIEW_PROPERTY(onButtonPress, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTextChange, RCTDirectEventBlock)
-RCT_EXTERN_METHOD(
-                  setTextValueFromManager:(nonnull NSNumber *)node
-                  value:(NSString *)value
-                  )
+//RCT_EXTERN_METHOD(
+//                  setTextValueFromManager:(nonnull NSNumber *)node
+//                  value:(NSString *)value
+//                  )
 
 @end
