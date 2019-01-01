@@ -15,13 +15,20 @@ class JBSearchBar: UIView, UISearchBarDelegate {
     return sb
   }()
   
-  @objc var text: NSString {
-    get {
-      return (searchBar.text ?? "") as NSString
-    }
-    set {
+  /* JBSearchBarManager exposes this as a view property, so this ONLY manifests as a prop.
+   * Hence, no need for getter. */
+  @objc var text: NSString = "" {
+//    get {
+//      return (searchBar.text ?? "") as NSString
+//    }
+    didSet {
       searchBar.text = text as String
     }
+  }
+  
+  // The obj-c selector 'setText' is implicitly generated as 'text' is a computed property.
+  @objc func setTextValue(_ value: NSString) {
+    self.text = value
   }
   
   /*

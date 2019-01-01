@@ -12,17 +12,22 @@ import Foundation
 // https://teabreak.e-spres-oh.com/swift-in-react-native-the-ultimate-guide-part-2-ui-components-907767123d9e
 @objc(JBSearchBarManager)
 class JBSearchBarManager: RCTViewManager {
-  
-  
   override static func requiresMainQueueSetup() -> Bool {
     return true
   }
   
   override func view() -> UIView! {
-    guard let bridge: RCTBridge = self.bridge else {
-      return nil
+//    guard let bridge: RCTBridge = self.bridge else {
+//      return nil
+//    }
+//    return JBSearchBar(eventDispatcher: bridge.eventDispatcher())
+    return JBSearchBar()
+  }
+  
+  @objc func setTextValueFromManager(_ node: NSNumber, value: NSString) {
+    DispatchQueue.main.async {
+      let component: JBSearchBar = self.bridge.uiManager.view(forReactTag: node) as! JBSearchBar
+      component.setTextValue(value)
     }
-    return JBSearchBar(eventDispatcher: bridge.eventDispatcher())
-    // return JBSearchBar()
   }
 }
