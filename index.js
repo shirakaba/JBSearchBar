@@ -1,4 +1,1 @@
-import { NativeModules } from 'react-native';
-const { JBSearchBar } = NativeModules;
-
-export default JBSearchBar;
+export { default } from './src/JBSearchBar';
