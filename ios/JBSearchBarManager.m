@@ -11,22 +11,23 @@
 #import <React/RCTViewManager.h>
 // #import "JBSearchBar.h"
 
-//@implementation RCTConvert (UIBarStyle)
-//RCT_ENUM_CONVERTER(UIBarStyle, (@{
-//                                  @"default": @(UIBarStyleDefault),
-//                                  @"black": @(UIBarStyleBlack)
-//                                  }),
-//                   UIBarStyleDefault, integerValue)
-//@end
-//
-//@implementation RCTConvert (UISearchBarStyle)
-//RCT_ENUM_CONVERTER(UISearchBarStyle, (@{
-//                                        @"default": @(UISearchBarStyleDefault),
-//                                        @"prominent": @(UISearchBarStyleProminent),
-//                                        @"minimal": @(UISearchBarStyleMinimal)
-//                                        }),
-//                   UISearchBarStyleDefault, integerValue)
-//@end
+@implementation RCTConvert (UIBarStyle)
+/* No obvious way to implement the enums purely in Swift. */
+RCT_ENUM_CONVERTER(UIBarStyle, (@{
+                                  @"default": @(UIBarStyleDefault),
+                                  @"black": @(UIBarStyleBlack)
+                                  }),
+                   UIBarStyleDefault, integerValue)
+@end
+
+@implementation RCTConvert (UISearchBarStyle)
+RCT_ENUM_CONVERTER(UISearchBarStyle, (@{
+                                        @"default": @(UISearchBarStyleDefault),
+                                        @"prominent": @(UISearchBarStyleProminent),
+                                        @"minimal": @(UISearchBarStyleMinimal)
+                                        }),
+                   UISearchBarStyleDefault, integerValue)
+@end
 
 // https://teabreak.e-spres-oh.com/swift-in-react-native-the-ultimate-guide-part-2-ui-components-907767123d9e
 // "If the exposed name ends with Manager, React Native will automatically remove the Manager ending."
@@ -62,10 +63,6 @@ RCT_EXPORT_VIEW_PROPERTY(searchBarStyle, UISearchBarStyle)
 
 RCT_EXPORT_VIEW_PROPERTY(onButtonPress, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTextChange, RCTDirectEventBlock)
-//RCT_EXTERN_METHOD(
-//                  setTextValueFromManager:(nonnull NSNumber *)node
-//                  value:(NSString *)value
-//                  )
 
 /* Called by JS in onFocus(), onBlur(), and onCancelButtonPress() */
 RCT_EXTERN_METHOD(
