@@ -67,4 +67,16 @@ RCT_EXPORT_VIEW_PROPERTY(onTextChange, RCTDirectEventBlock)
 //                  value:(NSString *)value
 //                  )
 
+/* Called by JS in onFocus(), onBlur(), and onCancelButtonPress() */
+RCT_EXTERN_METHOD(
+                  toggleCancelButton
+                  :(nonnull NSNumber *)reactTag
+                  flag:(BOOL)flag
+                  )
+/* Called by JS in the same-named class functions. */
+RCT_EXTERN_METHOD(blur:(nonnull NSNumber *)reactTag)
+RCT_EXTERN_METHOD(focus:(nonnull NSNumber *)reactTag)
+RCT_EXTERN_METHOD(unFocus:(nonnull NSNumber *)reactTag)
+RCT_EXTERN_METHOD(clearText:(nonnull NSNumber *)reactTag)
+
 @end
