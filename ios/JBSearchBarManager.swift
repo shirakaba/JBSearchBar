@@ -17,11 +17,12 @@ class JBSearchBarManager: RCTViewManager {
   }
   
   override func view() -> UIView! {
-//    guard let bridge: RCTBridge = self.bridge else {
-//      return nil
-//    }
-//    return JBSearchBar(eventDispatcher: bridge.eventDispatcher())
-    return JBSearchBar()
+    guard let bridge: RCTBridge = self.bridge else {
+      print("[JBSearchBarManager] Unable to get reference to bridge, so can't generate view!")
+      return nil
+    }
+    return JBSearchBar(eventDispatcher: bridge.eventDispatcher())
+    // return JBSearchBar()
   }
   
   @objc func setTextValueFromManager(_ node: NSNumber, value: NSString) {

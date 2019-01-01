@@ -9,16 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridge.h>
 #import <React/RCTBridgeModule.h>
+#import <React/RCTComponent.h>
 // #import <React/RCTEventEmitter.h>
 // #import <React/RCTEventDispatcher.h>
-#import <React/RCTView.h>
 
-@interface RCT_EXTERN_MODULE(JBSearchBar, UISearchBar)
+@class RCTEventDispatcher;
 
-//RCT_EXTERN_METHOD(
-//                  initWithEventDispatcher
-//                  :(RCTEventDispatcher *)eventDispatcher
-//                  )
+@interface RNSearchBar : UISearchBar
+
+@property(nonatomic) BOOL _jsShowsCancelButton;
+@property(nonatomic, copy) RCTBubblingEventBlock onSearchButtonPress;
+@property(nonatomic, copy) RCTBubblingEventBlock onCancelButtonPress;
 
 @end
 

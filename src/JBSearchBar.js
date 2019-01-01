@@ -25,10 +25,10 @@ class SearchBar extends React.PureComponent {
     autoCorrect: false,
     spellCheck: false,
     showsCancelButtonWhileEditing: true,
-    onChange: () => null,
-    onChangeText: () => null,
-    onFocus: () => null,
-    onBlur: () => null,
+    // onChange: () => null,
+    // onChangeText: () => null,
+    // onFocus: () => null,
+    // onBlur: () => null,
     onSearchButtonPress: () => null,
     onCancelButtonPress: () => null,
   }
@@ -88,10 +88,10 @@ class SearchBar extends React.PureComponent {
       <JBSearchBar
         style={{ height: NativeModules.JBSearchBarManager.ComponentHeight }}
         {...this.props}
-        onChange={this.onChange}
-        onPress={this.onPress}
-        onFocus={this.onFocus}
-        onBlur={this.onBlur}
+        // onChange={this.onChange}
+        // onPress={this.onPress}
+        // onFocus={this.onFocus}
+        // onBlur={this.onBlur}
         onSearchButtonPress={this.onSearchButtonPress}
         onCancelButtonPress={this.onCancelButtonPress}
       />

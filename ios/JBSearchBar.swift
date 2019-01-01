@@ -8,29 +8,7 @@
 import Foundation
 
 // https://teabreak.e-spres-oh.com/swift-in-react-native-the-ultimate-guide-part-2-ui-components-907767123d9e
-class JBSearchBar: UIView, UISearchBarDelegate {
-  lazy var searchBar: UISearchBar = {
-    let sb = UISearchBar()
-    sb.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    return sb
-  }()
-  
-  /* JBSearchBarManager exposes this as a view property, so this ONLY manifests as a prop.
-   * Hence, no need for getter. */
-  @objc var text: NSString = "" {
-//    get {
-//      return (searchBar.text ?? "") as NSString
-//    }
-    didSet {
-      searchBar.text = text as String
-    }
-  }
-  
-  // The obj-c selector 'setText' is implicitly generated as 'text' is a computed property.
-  @objc func setTextValue(_ value: NSString) {
-    self.text = value
-  }
-  
+class JBSearchBar: UISearchBar, UISearchBarDelegate {
   /*
    * RCTDirectEventBlock facilitates Swift -> React communication upon native event.
    * Note to self: any RCTBubblingEventBlock/RCTDirectEventBlock property MUST be prefixed with 'on' to be triggered.
@@ -46,18 +24,50 @@ class JBSearchBar: UIView, UISearchBarDelegate {
     }
   }
   
-  private var eventDispatcher: RCTEventDispatcher!
+  func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    self.eventDispatcher.sendTextEvent(with: .blur, reactTag: self.reactTag, text: text, key: nil, eventCount: nativeEventCount)
+  }
+  
+  private var jsShowsCancelButton: Bool = true
+  
+  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    self.setShowsCancelButton(jsShowsCancelButton, animated: true)
+    self.eventDispatcher.sendTextEvent(with: .focus, reactTag: self.reactTag, text: text, key: nil, eventCount: nativeEventCount)
+  }
+  
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    nativeEventCount += 1
+    self.eventDispatcher.sendTextEvent(with: .change, reactTag: self.reactTag, text: text, key: searchText, eventCount: nativeEventCount)
+  }
+  
+  @objc var onSearchButtonPress: RCTBubblingEventBlock?
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    guard onSearchButtonPress != nil else { return }
+    onSearchButtonPress!([
+      "target": self.reactTag,
+      "button": "search" as NSString,
+      "searchText": (searchBar.text ?? "") as NSString
+    ])
+  }
+  
+  @objc var onCancelButtonPress: RCTBubblingEventBlock?
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    self.text = ""
+    self.resignFirstResponder()
+    self.setShowsCancelButton(false, animated: true)
+    
+    guard onCancelButtonPress != nil else { return }
+    self.onCancelButtonPress!([:])
+  }
+  
   private var nativeEventCount: Int = 0
+  private var eventDispatcher: RCTEventDispatcher!
   
-//  init(eventDispatcher: RCTEventDispatcher) {
-//    super.init(frame: CGRect(x: 0, y: 0, width: 1000, height: 44))
-//    self.eventDispatcher = eventDispatcher
-//    self.delegate = self
-//  }
-  
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    self.addSubview(searchBar)
+  init(eventDispatcher: RCTEventDispatcher) {
+    super.init(frame: CGRect(x: 0, y: 0, width: 1000, height: 44))
+    self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    self.delegate = self
+    self.eventDispatcher = eventDispatcher
   }
   
   required init?(coder aDecoder: NSCoder) {
