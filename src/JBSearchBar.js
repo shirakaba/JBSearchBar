@@ -7,8 +7,8 @@ class SearchBar extends React.PureComponent {
   static defaultProps = {
     text: '',
     placeholder: 'Search',
-    barStyle: 'default',
-    searchBarStyle: 'default',
+    // barStyle: 'default',
+    // searchBarStyle: 'default',
     editable: true,
     cancelButtonText: 'Cancel',
     showsCancelButton: false,
