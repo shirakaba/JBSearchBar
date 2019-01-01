@@ -24,6 +24,21 @@ class JBSearchBar: UIView, UISearchBarDelegate {
     }
   }
   
+  /*
+   * RCTDirectEventBlock facilitates Swift -> React communication upon native event.
+   * Note to self: any RCTBubblingEventBlock/RCTDirectEventBlock property MUST be prefixed with 'on' to be triggered.
+   *
+   * Subscribe to this native event in React by using the onButtonPress prop, e.g.:
+   * onButtonPress={(e) => console.log(e.nativeEvent.type)} // prints "cancel" or "refresh".
+   */
+  @objc var onButtonPress: RCTDirectEventBlock?
+  @objc func sendButtonPress(_ gesture: UITapGestureRecognizer) {
+    if gesture.state == .ended {
+      guard onButtonPress != nil else { return }
+      onButtonPress!(["type": "refresh"]) // Initially anticipating 'refresh' and 'cancel' button types.
+    }
+  }
+  
   private var eventDispatcher: RCTEventDispatcher!
   private var nativeEventCount: Int = 0
   

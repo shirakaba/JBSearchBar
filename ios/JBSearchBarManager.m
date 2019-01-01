@@ -14,6 +14,7 @@
 // "If the exposed name ends with Manager, React Native will automatically remove the Manager ending."
 @interface RCT_EXTERN_MODULE(JBSearchBarManager, RCTViewManager)
 
-RCT_EXPORT_VIEW_PROPERTY(count, NSNumber)
+RCT_EXPORT_VIEW_PROPERTY(text, NSString)
+RCT_EXPORT_VIEW_PROPERTY(onButtonPress, RCTDirectEventBlock)
 
 @end

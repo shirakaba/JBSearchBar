@@ -15,10 +15,10 @@
 
 @interface RCT_EXTERN_MODULE(JBSearchBar, UISearchBar)
 
-RCT_EXTERN_METHOD(
-                  initWithEventDispatcher
-                  :(RCTEventDispatcher *)eventDispatcher
-                  )
+//RCT_EXTERN_METHOD(
+//                  initWithEventDispatcher
+//                  :(RCTEventDispatcher *)eventDispatcher
+//                  )
 
 @end
 

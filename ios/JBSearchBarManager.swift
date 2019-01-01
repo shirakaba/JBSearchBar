@@ -13,12 +13,16 @@ import Foundation
 @objc(JBSearchBarManager)
 class JBSearchBarManager: RCTViewManager {
   
+  
   override static func requiresMainQueueSetup() -> Bool {
     return true
   }
   
   override func view() -> UIView! {
-    // return JBSearchBar(eventDispatcher: <#T##RCTEventDispatcher#>)
-    return JBSearchBar()
+    guard let bridge: RCTBridge = self.bridge else {
+      return nil
+    }
+    return JBSearchBar(eventDispatcher: bridge.eventDispatcher())
+    // return JBSearchBar()
   }
 }
