@@ -8,6 +8,7 @@
 import Foundation
 
 // https://teabreak.e-spres-oh.com/swift-in-react-native-the-ultimate-guide-part-2-ui-components-907767123d9e
+// @objc(JBSearchBar)
 class JBSearchBar: UISearchBar, UISearchBarDelegate {
   /*
    * RCTDirectEventBlock facilitates Swift -> React communication upon native event.
@@ -55,7 +56,6 @@ class JBSearchBar: UISearchBar, UISearchBarDelegate {
     self.text = ""
     self.resignFirstResponder()
     self.setShowsCancelButton(false, animated: true)
-    
     guard onCancelButtonPress != nil else { return }
     self.onCancelButtonPress!([:])
   }

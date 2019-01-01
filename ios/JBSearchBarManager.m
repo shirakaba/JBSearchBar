@@ -32,7 +32,10 @@
 // "If the exposed name ends with Manager, React Native will automatically remove the Manager ending."
 @interface RCT_EXTERN_MODULE(JBSearchBarManager, RCTViewManager)
 
+RCT_EXPORT_VIEW_PROPERTY(onSearchButtonPress, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onCancelButtonPress, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(placeholder, NSString)
+RCT_EXPORT_VIEW_PROPERTY(text, NSString)
 //RCT_CUSTOM_VIEW_PROPERTY(showsCancelButton, BOOL, JBSearchBar)
 //{
 //  BOOL value = [RCTConvert BOOL:json];
@@ -57,7 +60,6 @@ RCT_EXPORT_VIEW_PROPERTY(searchBarStyle, UISearchBarStyle)
 //  }
 //}
 
-RCT_EXPORT_VIEW_PROPERTY(text, NSString)
 RCT_EXPORT_VIEW_PROPERTY(onButtonPress, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTextChange, RCTDirectEventBlock)
 //RCT_EXTERN_METHOD(
