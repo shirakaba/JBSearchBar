@@ -6,3 +6,39 @@
 //
 
 import Foundation
+
+// https://teabreak.e-spres-oh.com/swift-in-react-native-the-ultimate-guide-part-2-ui-components-907767123d9e
+class JBSearchBar: UIView, UISearchBarDelegate {
+  lazy var searchBar: UISearchBar = {
+    let sb = UISearchBar()
+    sb.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    return sb
+  }()
+  
+  @objc var text: String {
+    get {
+      return searchBar.text ?? ""
+    }
+    set {
+      searchBar.text = text
+    }
+  }
+  
+  private var eventDispatcher: RCTEventDispatcher!
+  private var nativeEventCount: Int = 0
+  
+//  init(eventDispatcher: RCTEventDispatcher) {
+//    super.init(frame: CGRect(x: 0, y: 0, width: 1000, height: 44))
+//    self.eventDispatcher = eventDispatcher
+//    self.delegate = self
+//  }
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    self.addSubview(searchBar)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+}
