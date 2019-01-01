@@ -65,7 +65,7 @@ class JBSearchBar: UISearchBar, UISearchBarDelegate {
   
   init(eventDispatcher: RCTEventDispatcher) {
     super.init(frame: CGRect(x: 0, y: 0, width: 1000, height: 44))
-    self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    // self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     self.delegate = self
     self.eventDispatcher = eventDispatcher
   }
