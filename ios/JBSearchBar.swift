@@ -15,12 +15,12 @@ class JBSearchBar: UIView, UISearchBarDelegate {
     return sb
   }()
   
-  @objc var text: String {
+  @objc var text: NSString {
     get {
-      return searchBar.text ?? ""
+      return (searchBar.text ?? "") as NSString
     }
     set {
-      searchBar.text = text
+      searchBar.text = text as String
     }
   }
   
