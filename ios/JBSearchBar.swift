@@ -65,7 +65,7 @@ class JBSearchBar: UISearchBar, UISearchBarDelegate {
   
   @objc var onCancelButtonPress: RCTBubblingEventBlock?
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-    self.text = ""
+    // self.text = ""
     self.resignFirstResponder()
     self.setShowsCancelButton(false, animated: true)
     guard onCancelButtonPress != nil else { return }
