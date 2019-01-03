@@ -29,6 +29,8 @@ class SearchBar extends React.PureComponent {
     onChangeText: (text) => null,
     onFocus: () => null,
     onBlur: () => null,
+    onSearchBarTextDidBeginEditing: (text) => null,
+    onSearchBarTextDidEndEditing: (text) => null,
     onSearchButtonPress: (text) => null,
     onCancelButtonPress: () => null,
   }
@@ -36,6 +38,14 @@ class SearchBar extends React.PureComponent {
   onChange = (e) => {
     this.props.onChange(e)
     this.props.onChangeText(e.nativeEvent.text)
+  }
+
+  onSearchBarTextDidBeginEditing = (e) => {
+    this.props.onSearchBarTextDidBeginEditing(e.nativeEvent.searchText)
+  }
+
+  onSearchBarTextDidEndEditing = (e) => {
+    this.props.onSearchBarTextDidEndEditing(e.nativeEvent.searchText)
   }
 
   onSearchButtonPress = (e) => {
@@ -92,6 +102,8 @@ class SearchBar extends React.PureComponent {
         // onPress={this.onPress}
         onFocus={this.onFocus}
         onBlur={this.onBlur}
+        onSearchBarTextDidBeginEditing={this.onSearchBarTextDidBeginEditing}
+        onSearchBarTextDidEndEditing={this.onSearchBarTextDidEndEditing}
         onSearchButtonPress={this.onSearchButtonPress}
         onCancelButtonPress={this.onCancelButtonPress}
       />

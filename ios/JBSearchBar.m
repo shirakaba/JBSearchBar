@@ -18,6 +18,8 @@
 @interface RNSearchBar : UISearchBar
 
 @property(nonatomic) BOOL _jsShowsCancelButton;
+@property(nonatomic, copy) RCTBubblingEventBlock onSearchBarTextDidEndEditing;
+@property(nonatomic, copy) RCTBubblingEventBlock onSearchBarTextDidBeginEditing;
 @property(nonatomic, copy) RCTBubblingEventBlock onSearchButtonPress;
 @property(nonatomic, copy) RCTBubblingEventBlock onCancelButtonPress;
 

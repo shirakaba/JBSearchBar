@@ -33,6 +33,8 @@ RCT_ENUM_CONVERTER(UISearchBarStyle, (@{
 // "If the exposed name ends with Manager, React Native will automatically remove the Manager ending."
 @interface RCT_EXTERN_MODULE(JBSearchBarManager, RCTViewManager)
 
+RCT_EXPORT_VIEW_PROPERTY(onSearchBarTextDidEndEditing, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onSearchBarTextDidBeginEditing, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onSearchButtonPress, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onCancelButtonPress, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(placeholder, NSString)

@@ -25,15 +25,27 @@ class JBSearchBar: UISearchBar, UISearchBarDelegate {
     }
   }
   
+  @objc var onSearchBarTextDidEndEditing: RCTBubblingEventBlock?
   func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
     self.eventDispatcher.sendTextEvent(with: .blur, reactTag: self.reactTag, text: text, key: nil, eventCount: nativeEventCount)
+    guard onSearchBarTextDidEndEditing != nil else { return }
+    onSearchBarTextDidEndEditing!([
+      "target": self.reactTag,
+      "searchText": (searchBar.text ?? "") as NSString
+    ])
   }
   
   private var jsShowsCancelButton: Bool = true
   
+  @objc var onSearchBarTextDidBeginEditing: RCTBubblingEventBlock?
   func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
     self.setShowsCancelButton(jsShowsCancelButton, animated: true)
     self.eventDispatcher.sendTextEvent(with: .focus, reactTag: self.reactTag, text: text, key: nil, eventCount: nativeEventCount)
+    guard onSearchBarTextDidBeginEditing != nil else { return }
+    onSearchBarTextDidBeginEditing!([
+      "target": self.reactTag,
+      "searchText": (searchBar.text ?? "") as NSString
+    ])
   }
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
