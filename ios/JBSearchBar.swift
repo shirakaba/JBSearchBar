@@ -62,12 +62,34 @@ class JBSearchBar: UISearchBar, UISearchBarDelegate {
   
   private var nativeEventCount: Int = 0
   private var eventDispatcher: RCTEventDispatcher!
+  private var refreshButton: UIButton = UIButton(type: UIButton.ButtonType.custom)
   
   init(eventDispatcher: RCTEventDispatcher) {
     super.init(frame: CGRect(x: 0, y: 0, width: 1000, height: 44))
     // self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     self.delegate = self
     self.eventDispatcher = eventDispatcher
+   
+    
+    let btnImage = UIImage(named: "refresh_dummy3")
+    refreshButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+    refreshButton.setImage(btnImage, for: UIControl.State.normal)
+    
+//    guard let buttonContainer: UIView = self.subviews.first(where: {
+//      (subview) in
+//        return subview.subviews.first(where: { (subsubview) in subsubview as? UIButton != nil }) != nil
+//    }) else { return }
+    
+    // guard let textField = self.subviews.first(where: { $0 as? UITextField != nil }) else { return }
+    self.addSubview(refreshButton)
+    self.bringSubviewToFront(refreshButton)
+    
+    // refreshButton.leadingAnchor.constraint(equalTo: wv.leadingAnchor).isActive = true
+    refreshButton.translatesAutoresizingMaskIntoConstraints = false
+    refreshButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
+    refreshButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+    refreshButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+    refreshButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
   }
   
   required init?(coder aDecoder: NSCoder) {
